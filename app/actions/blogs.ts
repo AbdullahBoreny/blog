@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
-import { addBlog } from "../services/blogs";
+import { addBlog, getBlogById, increaseLikes } from "../services/blogs";
 
 export const createNote = async (formData: FormData) => {
   const author = formData.get("author") as string;
@@ -13,4 +13,10 @@ export const createNote = async (formData: FormData) => {
 
   revalidatePath("/blogs");
   redirect("/blogs");
+};
+export const increaseCount = async (formData: FormData) => {
+  const id = formData.get("id") as string;
+  increaseLikes(Number(id));
+  revalidatePath(`blogs/${id}`);
+
 };

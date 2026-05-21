@@ -1,3 +1,4 @@
+import { increaseCount } from "@/app/actions/blogs";
 import { getBlogById } from "@/app/services/blogs";
 import { notFound } from "next/navigation";
 interface Props {
@@ -17,7 +18,14 @@ const BlogPage = async (props: Props) => {
             <h2>{blog.title}</h2>
             <p>likes: {blog.likes}</p>
             <p>{blog.url}</p>
-            
+            <p>{blog.likes}</p>
+            <form action={increaseCount}>
+                <input type="hidden" name="id" value={blog.id} />
+                <button type="submit">
+                    like
+                </button>
+            </form>
+
         </div>
     );
 };
