@@ -2,9 +2,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getUserBlogs } from "../../services/users";
 
-const UserPage = async ({ params }: { params: Promise<{ id: string; }>; }) => {
-    const { id } = await params;
-    const user = await getUserBlogs(Number(id));
+const UserPage = async ({ params }: { params: Promise<{ username: string; }>; }) => {
+    const { username } = await params;
+    console.log(username)
+    const user = await getUserBlogs((username));
+    console.log(user)
     if (!user) {
         notFound();
     }

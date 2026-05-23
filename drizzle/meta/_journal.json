@@ -5,29 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1779551178844,
-      "tag": "0000_awesome_quasimodo",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1779552719121,
-      "tag": "0001_bored_killmonger",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1779553386107,
-      "tag": "0002_amused_stone_men",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1779553524577,
-      "tag": "0003_classy_blue_marvel",
+      "when": 1779557155418,
+      "tag": "0000_foamy_thor_girl",
       "breakpoints": true
     }
   ]
