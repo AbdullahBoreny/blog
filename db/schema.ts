@@ -6,6 +6,7 @@ export const blogs = pgTable("blogs", {
   author: text("author").notNull(),
   url: text("url").notNull(),
   likes: integer("likes").notNull(),
+  userId: integer("userId").notNull().references(() => users.id)
 });
 
 export const users = pgTable("users", {
