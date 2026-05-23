@@ -20,7 +20,7 @@ const NewBlog = () => {
         <div>
           <label>
                 Likes: 
-            <input type="text" name="likes" />
+            <input type="number" name="likes" />
           </label>
         </div>
         <div>

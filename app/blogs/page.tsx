@@ -27,7 +27,7 @@ const Blogs = async ({ searchParams }: Props) => {
             <div><strong>author:</strong> {blog.author}</div>
             <div><strong>title:</strong> {blog.title}</div>
             <div><strong>likes:</strong> {blog.likes}</div>
-            <Link href={`/blogs/${blog.id}`}>{blog.url}</Link>
+            <Link href={`/blogs/${blog.id}`}>view</Link>
           </li>
         ))}
       </ul>

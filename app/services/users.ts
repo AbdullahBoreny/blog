@@ -1,6 +1,6 @@
 import { auth } from "@/auth";
 import { db } from "@/db";
-import { users, blogs } from "@/db/schema";
+import { users } from "@/db/schema";
 import { eq } from "drizzle-orm";
 export const getUsers = async () => {
   return db.query.users.findMany();
