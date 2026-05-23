@@ -6,7 +6,7 @@ interface Props {
 }
 const BlogPage = async (props: Props) => {
     const { id } = await props.params;
-    const blog = getBlogById(Number(id));
+    const blog = await getBlogById(Number(id));
 
     if (!blog) {
         notFound();
