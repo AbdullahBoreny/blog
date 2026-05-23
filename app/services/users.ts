@@ -1,8 +1,8 @@
 import { db } from "@/db";
-import { users } from "@/db/schema";
+import { users, blogs } from "@/db/schema";
 import { eq } from "drizzle-orm";
 export const getUsers = async () => {
-  return db.query.users.findMany()
+  return db.query.users.findMany();
 };
 export const getUserById = async (id: number) => {
   return db.query.users.findFirst({
@@ -10,3 +10,14 @@ export const getUserById = async (id: number) => {
   });
 };
 
+export const getBlogsByUserId = async (userId: number) => {
+  return db.query.blogs.findMany({
+    where: eq(blogs.userId, userId),
+  });
+};
+export const getUserBlogs = async (id: number) => (
+  db.query.users.findFirst({
+    where: eq(users.id, id),
+    with: { blogs: true }
+  })
+);

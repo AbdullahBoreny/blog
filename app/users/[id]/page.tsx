@@ -1,22 +1,29 @@
-import { getUserById } from "@/app/services/users";
+import Link from "next/link";
 import { notFound } from "next/navigation";
+import { getUserBlogs } from "../../services/users";
 
-interface Props {
-    params: Promise<{ id: string; }>;
-}
-export default async function UserPage(props: Props) {
-    const { id } = await props.params;
-    const user = await getUserById(Number(id));
+const UserPage = async ({ params }: { params: Promise<{ id: string; }>; }) => {
+    const { id } = await params;
+    const user = await getUserBlogs(Number(id));
     if (!user) {
         notFound();
     }
-    return (
-        <>
-            <ul>
-                <li>{user?.name}</li>
-                <li>user name: {user?.userName}</li>
-            </ul>
 
-        </>
+
+    return (
+        <div>
+            <h2>Name: {user.name}</h2>
+            <p>Username: {user.userName}</p>
+            <h3>blogs</h3>
+            <ul>
+                {user.blogs.map((blog) => (
+                    <li key={blog.id}>
+                        <Link href={`/blogs/${blog.id}`}>{blog.title}</Link>
+
+                    </li>
+                ))}
+            </ul>
+        </div>
     );
-}
+};
+export default UserPage;

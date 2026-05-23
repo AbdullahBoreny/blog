@@ -14,11 +14,10 @@ const BlogPage = async (props: Props) => {
 
     return (
         <div>
-            <h1>{blog.author}</h1>
-            <h2>{blog.title}</h2>
-            <p>likes: {blog.likes}</p>
+            <h1>Author: {blog.author}</h1>
+            <h2>Title: {blog.title}</h2>
             <p>{blog.url}</p>
-            <p>{blog.likes}</p>
+            <p>likes: {blog.likes}</p>
             <form action={increaseCount}>
                 <input type="hidden" name="id" value={blog.id} />
                 <button type="submit">
