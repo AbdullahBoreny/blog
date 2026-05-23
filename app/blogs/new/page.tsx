@@ -1,10 +1,10 @@
-import { createNote } from "@/app/actions/blogs";
+import { createBlog } from "@/app/actions/blogs";
 
 const NewBlog = () => {
   return (
     <div>
       <h2>Create a new blog</h2>
-      <form action={createNote}>
+      <form action={createBlog}>
         <div>
           <label>
             Author: 

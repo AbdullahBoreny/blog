@@ -1,3 +1,4 @@
+import { auth } from "@/auth";
 import { db } from "@/db";
 import { users, blogs } from "@/db/schema";
 import { eq } from "drizzle-orm";
@@ -6,9 +7,18 @@ export const getUsers = async () => {
 };
 
 export const getUserBlogs = async (userName: string) => {
-  console.log(userName)
   return db.query.users.findFirst({
     where: eq(users.userName, userName),
     with: { blogs: true }
+  });
+};
+
+export const getCurrentUser = async () => {
+  const session = await auth();
+  if (!session?.user?.email) {
+    return null;
+  }
+  return db.query.users.findFirst({
+    where: eq(users.userName, session.user.email),
   });
 };

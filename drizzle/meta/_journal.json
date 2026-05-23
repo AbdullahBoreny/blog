@@ -8,6 +8,13 @@
       "when": 1779557155418,
       "tag": "0000_foamy_thor_girl",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1779573400757,
+      "tag": "0001_abandoned_kang",
+      "breakpoints": true
     }
   ]
 }
