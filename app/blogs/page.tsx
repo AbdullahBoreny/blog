@@ -7,7 +7,7 @@ interface Props {
 
 const Blogs = async ({ searchParams }: Props) => {
   const { filter } = await searchParams;
-  const allBlogs = getBlogs();
+  const allBlogs = await getBlogs();
 
   // Create a copy before sorting to avoid mutating the original source array
   const blogs = filter 
