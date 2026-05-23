@@ -7,3 +7,10 @@ export const blogs = pgTable("blogs", {
   url: text("url").notNull(),
   likes: integer("likes").notNull(),
 });
+
+export const users = pgTable("users", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  userName: text("userName").unique().notNull(),
+  password: text("password").notNull(),
+});
