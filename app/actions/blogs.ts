@@ -11,45 +11,45 @@ interface Error {
 
 }
 export const createBlog = async (
-  prevState: { errors: Error, values: Error; },
+  prevState: { errors: Error, values: Error, success?: boolean; },
   formData: FormData,
 ) => {
   const session = await auth();
   if (!session) {
     redirect("/login");
   }
-  const errors = {
-    author: "",
-    url: "",
-    title: ""
-  };
+  const errors = {} as Error;
 
   const author = formData.get("author") as string;
   if (author.length < 3) {
     const error = "author should be above 3 chars";
-   errors.author = error
+    Object.assign(errors, { author: error });
   }
   const title = formData.get("title") as string;
   if (title.length < 3) {
     const error = "title should be above 3 chars";
-    errors.title = error;
+    Object.assign(errors, { title: error });
 
   }
   const url = formData.get("url") as string;
   if (url.length < 5) {
     const error = "url should be above 5 chars";
-    errors.url = error;
+    Object.assign(errors, { url: error });
 
-  }
-  if (Object.keys(errors).length > 0) {
-    return { errors, values: { title, author, url } };
   }
   const likes = formData.get("likes") as string;
+  console.log(Object.keys(errors).length);
+  if (Object.keys(errors).length > 0) {
+    return { success: false, errors, values: { title, author, url } };
+  }
 
   await addBlog(author, title, Number(likes), url);
-
   revalidatePath("/blogs");
-  redirect("/blogs");
+  return {
+    errors: { author: "", title: "", url: "" },
+    success: true,
+    values: { title: "", author: "", url: "" }
+  };
 };
 export const increaseCount = async (formData: FormData) => {
   const id = formData.get("id") as string;
