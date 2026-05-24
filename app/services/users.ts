@@ -22,3 +22,8 @@ export const getCurrentUser = async () => {
     where: eq(users.userName, session.user.email),
   });
 };
+export const isExists = async (username: string) => {
+  return db.query.users.findFirst({
+    where: eq(users.userName, username)
+  });
+};

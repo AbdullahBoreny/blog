@@ -26,20 +26,19 @@ export const createBlog = async (
 
   const author = formData.get("author") as string;
   if (author.length < 3) {
-    const error = "author should be above 5 chars";
-    Object.assign(errors, { author: error });
+    const error = "author should be above 3 chars";
+   errors.author = error
   }
   const title = formData.get("title") as string;
   if (title.length < 3) {
-    const error = "title should be above 5 chars";
-    Object.assign(errors, { title: error });
+    const error = "title should be above 3 chars";
+    errors.title = error;
 
   }
   const url = formData.get("url") as string;
   if (url.length < 5) {
     const error = "url should be above 5 chars";
-    Object.assign(errors, { url: error });
-
+    errors.url = error;
 
   }
   if (Object.keys(errors).length > 0) {
