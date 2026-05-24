@@ -5,6 +5,9 @@ import bcrypt from "bcryptjs";
 import { db } from "../../db";
 import { users } from "../../db/schema";
 import { isExists } from "../services/users";
+import { eq } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
+
 export const registerUser = async (
   prevState: { error: string; },
   formData: FormData,
@@ -25,8 +28,18 @@ export const registerUser = async (
   }
   const passwordHash = await bcrypt.hash(password, 10);
 
-
   await db.insert(users).values({ userName, name, passwordHash });
 
   redirect("/login");
+};
+
+export const newToken = async (formData: FormData) => {
+  const token = crypto.randomUUID();
+  console.log(token)
+  const id = Number(formData.get("id"));
+  console.log(id)
+  await db.update(users)
+    .set({ token: token })
+    .where(eq(users.id, id));
+    revalidatePath("/me")
 };

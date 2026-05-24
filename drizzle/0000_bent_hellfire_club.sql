@@ -11,6 +11,8 @@ CREATE TABLE "users" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"name" text NOT NULL,
 	"userName" text NOT NULL,
+	"password_hash" text DEFAULT '' NOT NULL,
+	"token" text,
 	CONSTRAINT "users_userName_unique" UNIQUE("userName")
 );
 --> statement-breakpoint

@@ -46,10 +46,10 @@ const NavBar = () => {
                 text-white px-4 py-2 rounded-xl
                 font-medium transition shadow-md"
               >
-                + Create New
+                 New blog
               </Link>
 
-              <div
+              <Link href="/me"
                 className="hidden sm:flex items-center gap-2
                 bg-gray-800 px-4 py-2 rounded-2xl"
               >
@@ -63,7 +63,7 @@ const NavBar = () => {
                 <em className="text-gray-300 not-italic text-sm">
                   {session.user?.name}
                 </em>
-              </div>
+              </Link>
 
               <button
                 onClick={() => signOut()}

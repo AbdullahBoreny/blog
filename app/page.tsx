@@ -1,6 +1,8 @@
 import Head from "next/head";
 export const metadata = {
-  title: "My page title",
+  title: "Boreny blog",
+  description: "A simple blog application built with Next.js",
+
 };
 const Home = () => {
   return (
@@ -10,7 +12,7 @@ const Home = () => {
         className="max-w-3xl w-full bg-white rounded-3xl shadow-2xl 
         p-10 text-center"
       >
-        
+
         <div className="space-y-6">
 
 
