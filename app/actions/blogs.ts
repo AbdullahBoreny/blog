@@ -4,6 +4,9 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { addBlog, increaseLikes } from "../services/blogs";
 import { auth } from "@/auth";
+import { getCurrentUser } from "../services/users";
+import { readingList } from "@/db/schema";
+import { db } from "@/db";
 interface Error {
   author: string,
   title: string;
@@ -54,6 +57,16 @@ export const createBlog = async (
 export const increaseCount = async (formData: FormData) => {
   const id = formData.get("id") as string;
   await increaseLikes(Number(id));
-  revalidatePath(`blogs/${id}`);
+  revalidatePath(`/blogs/${id}`);
 
+};
+export const addToReadingList = async (formData: FormData) => {
+  const blogId = Number(formData.get("blogId"));
+  const user = await getCurrentUser();
+  if (!user) {
+    throw new Error("bla bla bla not signed up");
+  }
+  await db.insert(readingList).values({ blogId, userId: user?.id });
+  revalidatePath("/me");
+  redirect("/me");
 };

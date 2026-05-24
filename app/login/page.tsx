@@ -32,7 +32,7 @@ export default function LoginPage() {
 
   return (
     <div
-      className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-200
+      className="min-h-screen bg-linear-to-b from-gray-100 to-gray-200
       flex items-center justify-center px-4"
     >
       <div

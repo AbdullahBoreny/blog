@@ -1,5 +1,5 @@
 {
-  "id": "ce88c494-e7c0-400c-9923-2f317cc0f31e",
+  "id": "08de720b-43bc-4f9a-8420-a548822326bc",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -53,6 +53,64 @@
           "tableTo": "users",
           "columnsFrom": [
             "userId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.readingList": {
+      "name": "readingList",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "userId": {
+          "name": "userId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "blogId": {
+          "name": "blogId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "readingList_userId_users_id_fk": {
+          "name": "readingList_userId_users_id_fk",
+          "tableFrom": "readingList",
+          "tableTo": "users",
+          "columnsFrom": [
+            "userId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "readingList_blogId_blogs_id_fk": {
+          "name": "readingList_blogId_blogs_id_fk",
+          "tableFrom": "readingList",
+          "tableTo": "blogs",
+          "columnsFrom": [
+            "blogId"
           ],
           "columnsTo": [
             "id"

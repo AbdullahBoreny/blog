@@ -1,18 +1,17 @@
 import Link from "next/link";
 import { getBlogs } from "../services/blogs";
-
+import { addToReadingList } from "../actions/blogs";
 interface Props {
-  searchParams: Promise<{ filter?: string }>;
+  searchParams: Promise<{ filter?: string; }>;
 }
 
 const Blogs = async ({ searchParams }: Props) => {
   const { filter } = await searchParams;
   const allBlogs = await getBlogs();
-
   const blogs = filter
     ? allBlogs.filter((blog) =>
-        blog.title.toLowerCase().includes(filter.toLowerCase())
-      )
+      blog.title.toLowerCase().includes(filter.toLowerCase())
+    )
     : [...allBlogs].sort((a, b) => b.likes - a.likes);
 
   return (
@@ -73,6 +72,13 @@ const Blogs = async ({ searchParams }: Props) => {
                   text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
                     ❤️ {blog.likes} likes
                   </div>
+                  <form action={addToReadingList}>
+                    <input type="hidden" name="blogId" value={blog.id} />
+                    <button
+                      className="font-medium hover:underline "
+                      type="submit"> add to reading list</button>
+
+                  </form>
 
                   <div className="pt-3">
                     <Link
