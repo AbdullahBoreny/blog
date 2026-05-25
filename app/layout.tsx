@@ -3,6 +3,7 @@ import NavBar from "./components/NavBar";
 import { NotificationProvider } from "./components/NotificationContext";
 import AuthSessionProvider from "./components/SessionProvider";
 import Notification from "./components/Notification";
+import Footer from "./components/Footer";
 export default function RootLayout({
   children,
 }: {
@@ -16,6 +17,7 @@ export default function RootLayout({
             <NavBar />
             <Notification />
             {children}
+            
           </NotificationProvider>
         </AuthSessionProvider>
       </body>
