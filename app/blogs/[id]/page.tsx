@@ -47,7 +47,7 @@ const BlogPage = async (props: Props) => {
               <input type="hidden" name="id" value={blog.id} />
               <button
                 type="submit"
-                className="bg-gray-900 hover:bg-gray-800 active:scale-[0.98] text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition shadow-xs"
+                className="bg-blue-500 cursor-pointer hover:bg-gray-800 active:scale-[0.98] text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition shadow-xs"
               >
                 Like Article
               </button>
