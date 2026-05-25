@@ -33,12 +33,11 @@ export const increaseLikes = async (id: number) => {
 
 export const getReadingList = async (userId: number) => {
 
-  const test = await db.query.readingList.findFirst({
+  const test = await db.query.readingList.findMany({
     where: eq(readingList.userId, userId),
-    with: { blogs: true }
+    with: { blog: true }
 
   });
-  console.log(test?.blogs);
   return test;
 
 };

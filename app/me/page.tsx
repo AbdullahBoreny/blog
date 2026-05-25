@@ -5,6 +5,7 @@ import { getCurrentUser } from "../services/users";
 const Me = async () => {
   const user = await getCurrentUser();
   const readingList = await getReadingList(user?.id as number);
+
   return (
     <div className="min-h-screen bg-gray-100 flex justify-center px-4 py-10">
       <div className="w-full max-w-lg bg-white rounded-3xl shadow-lg p-8 space-y-6">
@@ -25,9 +26,9 @@ const Me = async () => {
         <h1 className="font-mono text-3xl font-bold">Reading List</h1>
 
 
-        {readingList?.blogs.map(blog => (
-          <h1 className="bg-amber-100 p-2 text-blue-600 rounded-sm mb-1" key={blog.id}>
-            {blog.title}
+        {readingList.map(read => (
+          <h1 className="bg-amber-100 p-2 text-blue-600 rounded-sm mb-1" key={read.id}>
+            {read.blog.title}
 
           </h1>
         ))
