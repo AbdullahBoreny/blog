@@ -60,11 +60,12 @@ export const increaseCount = async (formData: FormData) => {
   revalidatePath(`/blogs/${id}`);
 
 };
-export const addToReadingList = async (formData: FormData) => {
+export const addToReadingList = async (formData: FormData, prevState: { error: string; },
+) => {
   const blogId = Number(formData.get("blogId"));
   const user = await getCurrentUser();
   if (!user) {
-    throw new Error("bla bla bla not signed up");
+    return { error: "Please Sign Up first" };
   }
   await db.insert(readingList).values({ blogId, userId: user?.id });
   revalidatePath("/me");

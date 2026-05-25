@@ -1,4 +1,6 @@
+
 import Link from "next/link";
+
 import { getBlogs } from "../services/blogs";
 import { addToReadingList } from "../actions/blogs";
 interface Props {
@@ -17,29 +19,28 @@ const Blogs = async ({ searchParams }: Props) => {
   return (
     <div className="min-h-screen bg-gray-100 py-10 px-4">
       <div className="max-w-3xl mx-auto">
-        <div className="bg-white shadow-lg rounded-2xl p-6">
           <h2 className="text-4xl font-bold text-gray-800 mb-6">
             Blogs
           </h2>
 
           <form
             action="/blogs"
-            className="flex gap-3 mb-8"
+            className="flex flex-wrap gap-3 mb-8"
           >
             <input
               type="text"
               name="filter"
               defaultValue={filter || ""}
               placeholder="Search blogs..."
-              className="flex-1 border border-gray-300 rounded-xl px-4 py-3 
+              className="flex-1 border border-gray-300 rounded-xl px-4 py-2 
               focus:outline-none focus:ring-2 focus:ring-blue-500 
               focus:border-transparent transition"
             />
 
             <button
               type="submit"
-              className="bg-blue-600 text-white px-5 py-3 rounded-xl 
-              hover:bg-blue-700 transition font-medium"
+              className="bg-blue-500 antialiased font-medium text-white fw px-2 py-2 rounded-2xl
+              hover:bg-blue-700 transition"
             >
               Search
             </button>
@@ -53,9 +54,7 @@ const Blogs = async ({ searchParams }: Props) => {
                 hover:shadow-md transition"
               >
                 <div className="space-y-2">
-                  <p className="text-sm text-gray-500">
-                    Author
-                  </p>
+                 
 
                   <h3 className="text-2xl font-semibold text-gray-800">
                     {blog.title}
@@ -72,10 +71,10 @@ const Blogs = async ({ searchParams }: Props) => {
                   text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
                     ❤️ {blog.likes} likes
                   </div>
-                  <form action={addToReadingList}>
+                  <form className="" action={addToReadingList}>
                     <input type="hidden" name="blogId" value={blog.id} />
                     <button
-                      className="font-medium hover:underline "
+                      className="font-medium bg-blue-500 mt-0.5 cursor-pointer text-white p-2 rounded-2xl"
                       type="submit"> add to reading list</button>
 
                   </form>
@@ -101,7 +100,6 @@ const Blogs = async ({ searchParams }: Props) => {
           )}
         </div>
       </div>
-    </div>
   );
 };
 
