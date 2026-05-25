@@ -1,5 +1,5 @@
 {
-  "id": "6042bb64-4e80-4519-b524-b0a93042efdd",
+  "id": "e75affb1-b6c2-413e-95d0-bfcbcc0b51be",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -88,6 +88,19 @@
           "type": "integer",
           "primaryKey": false,
           "notNull": true
+        },
+        "timestamp1": {
+          "name": "timestamp1",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "isRead": {
+          "name": "isRead",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
         }
       },
       "indexes": {},

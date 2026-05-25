@@ -1,6 +1,8 @@
+import Link from "next/link";
 import { newToken } from "../actions/users";
 import { getReadingList } from "../services/blogs";
 import { getCurrentUser } from "../services/users";
+import { markAsRead } from "../actions/readingList";
 
 const Me = async () => {
   const user = await getCurrentUser();
@@ -23,16 +25,38 @@ const Me = async () => {
             {user?.userName}
           </p>
         </div>
-        <h1 className="font-mono text-3xl font-bold">Reading List</h1>
+        <h1 className="font-mono text-3xl font-bold">Reading List {readingList.length}</h1>
+        <h1>Unread {readingList.filter(list => !list.isRead).length}</h1>
+        {readingList.map(list => (
+          !list.isRead && (
+            <div
+              key={list.id}
+              className="bg-amber-100 p-2 rounded-sm mb-1 flex flex-col">
+              <div className="rounded-sm mb-1 flex flex-1 ">
+                <Link href={`/blogs/${list.blog.id}`} className="flex-2  text-blue-600">{list.blog.title}</Link>
+                <form action={markAsRead}>
+                  <input id="id" name="id" type="hidden" value={list.id} />
+                  <button type="submit" className="flex-1 text-white font-bold bg-green-600 rounded-sm p-1">Mark as read</button>
 
+                </form>                </div>
+              <div>Added at: {list.timeAdded.toLocaleDateString()}</div>
+            </div>
+          )
+        ))}
+        <div>Read {readingList.filter(list => list.isRead).length}</div>
+        {readingList.map(list => (
+          list.isRead && (
+            <div
+              key={list.id}
+              className="bg-green-100 p-2 rounded-sm mb-1 flex flex-col">
+              <div className="rounded-sm mb-1 flex flex-1 ">
+                <Link href={`/blogs/${list.blog.id}`} className="flex-2  text-blue-600">{list.blog.title}</Link>
+              </div>
+              <div>Added at: {list.timeAdded.toLocaleDateString()}</div>
+            </div>
+          )
+        ))}
 
-        {readingList.map(read => (
-          <h1 className="bg-amber-100 p-2 text-blue-600 rounded-sm mb-1" key={read.id}>
-            {read.blog.title}
-
-          </h1>
-        ))
-        }
 
         <div className="pt-6 ">
           <h2 className="font-mono text-xl font-semibold mb-3">
@@ -62,7 +86,7 @@ const Me = async () => {
         </div>
 
       </div>
-    </div>
+    </div >
   );
 };
 

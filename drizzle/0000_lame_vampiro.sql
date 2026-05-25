@@ -10,7 +10,9 @@ CREATE TABLE "blogs" (
 CREATE TABLE "readingList" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"userId" integer NOT NULL,
-	"blogId" integer NOT NULL
+	"blogId" integer NOT NULL,
+	"timestamp1" timestamp DEFAULT now() NOT NULL,
+	"isRead" boolean
 );
 --> statement-breakpoint
 CREATE TABLE "users" (
