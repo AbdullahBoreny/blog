@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 
 interface Props {
-  params: Promise<{ id: string }>;
+  params: Promise<{ id: string; }>;
 }
 
 const BlogPage = async (props: Props) => {
@@ -30,17 +30,18 @@ const BlogPage = async (props: Props) => {
             <h1 className="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight mb-3">
               {blog.title}
             </h1>
-            
+
             <p className="text-sm text-gray-500">
               Written by <span className="font-semibold text-gray-800">{blog.author}</span>
             </p>
           </header>
 
-         
-          <footer className="flex items-center justify-between gap-4 bg-gray-50 border border-gray-100 rounded-2xl p-4 mt-8">
+
+          <div className="flex items-center justify-between gap-4 bg-gray-50 border border-gray-100 rounded-2xl p-4 mt-8">
             <div className="flex items-center gap-2 text-sm font-bold text-gray-700 px-3 py-1">
               <span>❤️</span>
               <span>{blog.likes} Likes</span>
+
             </div>
 
             <form action={increaseCount}>
@@ -52,7 +53,12 @@ const BlogPage = async (props: Props) => {
                 Like Article
               </button>
             </form>
-          </footer>
+            <Link
+              className="bg-blue-500 cursor-pointer hover:bg-gray-800 active:scale-[0.98] text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition shadow-xs"
+              href={blog.url}>View Article
+            </Link>
+          </div>
+
         </article>
       </div>
     </div>
