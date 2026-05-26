@@ -3,7 +3,8 @@ import NavBar from "./components/NavBar";
 import { NotificationProvider } from "./components/NotificationContext";
 import AuthSessionProvider from "./components/SessionProvider";
 import Notification from "./components/Notification";
-import Footer from "./components/Footer";
+import Script from 'next/script';
+
 export default function RootLayout({
   children,
 }: {
@@ -11,6 +12,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <Script src="https://s.pageclip.co/v1/pageclip.js"></Script>
       <body className="min-h-screen bg-background text-foreground">
         <AuthSessionProvider>
           <NotificationProvider>
