@@ -2,7 +2,7 @@ import { increaseCount } from "@/app/actions/blogs";
 import { getBlogById } from "@/app/services/blogs";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-
+export const dynamic = "force-dynamic";
 interface Props {
   params: Promise<{ id: string; }>;
 }

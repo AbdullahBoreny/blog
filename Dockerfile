@@ -29,8 +29,10 @@ RUN npm ci --include=dev
 COPY . .
 
 # Build application
-RUN npm run build
+RUN npx next build --experimental-build-mode compile
+
 # Remove development dependencies
+RUN npm prune --omit=dev
 
 
 # Final stage for app image
