@@ -15,8 +15,11 @@ const NavBar = () => {
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-3">
 
         <div className="flex items-center gap-2">
-          <Image src="/projects.png" alt="Logo" width={50} height={50} />
-         
+          <Link href="/">
+            <Image src="/projects.png" alt="Logo" width={50} height={50} />
+
+          </Link>
+
         </div>
 
         <div className="hidden md:flex items-center gap-2">
